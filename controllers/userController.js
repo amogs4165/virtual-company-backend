@@ -3,7 +3,7 @@ import User from "../models/userModel.js";
 
 // @desc    Using authO
 // @rout    GET /user
-// @access  Public - Registered users with authO
+// @access  Private - Registered users with authO
 export const googleAuth = asyncHandler(async (req, res) => {
   try {
     console.log("userInfo", req.userInfo);
