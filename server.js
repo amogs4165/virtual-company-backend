@@ -12,9 +12,9 @@ app.use(cors({origin:"*"}));
 app.use(morgan('dev'));
 app.use(verifyJwt)
 
-import USER_ROUTES from './routes/userRoutes.js'
+import AUTH_ROUTES from './routes/userRoutes.js'
 
-app.use('/user', USER_ROUTES);
+app.use('/user', AUTH_ROUTES);
 
 
 

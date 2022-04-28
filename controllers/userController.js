@@ -3,7 +3,7 @@ import User from "../models/userModel.js";
 
 // @desc    Using authO
 // @rout    GET /user
-// @access  Private - Registered users with authO
+// @acce    Private - Registered users with authO
 export const googleAuth = asyncHandler(async (req, res) => {
   try {
     console.log("userInfo", req.userInfo);
@@ -63,3 +63,5 @@ export const googleAuth = asyncHandler(async (req, res) => {
     console.log(error);
   }
 });
+
+
