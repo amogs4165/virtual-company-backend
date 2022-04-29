@@ -8,13 +8,16 @@ import { verifyJwt } from './middlewares/verifyJwt.js';
 connectDB();
 
 const app = express();
+app.use(express.json())
 app.use(cors({origin:"*"}));
 app.use(morgan('dev'));
 app.use(verifyJwt)
 
 import AUTH_ROUTES from './routes/userRoutes.js'
-
+import CATEGORY_ROUTES from './routes/categoryRoutes.js'
 app.use('/user', AUTH_ROUTES);
+app.use('/category', CATEGORY_ROUTES);
+
 
 
 

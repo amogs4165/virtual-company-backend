@@ -11,5 +11,5 @@ export const verifyJwt = jwt({
   audience: 'this is virtual company unique identifier',
   issuer: 'https://virtual-company.us.auth0.com/',
   algorithms: ['RS256'],
-}).unless({path:['/user']})
+}).unless({path:['/user','/category']})
 
