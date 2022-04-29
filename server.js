@@ -15,9 +15,11 @@ app.use(verifyJwt)
 
 import AUTH_ROUTES from './routes/userRoutes.js'
 import CATEGORY_ROUTES from './routes/categoryRoutes.js'
+import COMPANY_ROUTES from './routes/companyRoutes.js'
+
 app.use('/user', AUTH_ROUTES);
 app.use('/category', CATEGORY_ROUTES);
-
+app.use('/company', COMPANY_ROUTES);
 
 
 

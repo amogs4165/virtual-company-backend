@@ -28,7 +28,7 @@ export const createCategory = asyncHandler(async (req, res) => {
   const newCategory = await Category.create(req.body);
   if (newCategory)
     return res.status(201).json({
-      newCategory: newCategory.categoryName,
+      newCategory: newCategory.categoryName
     });
 
   res.status(400).json({

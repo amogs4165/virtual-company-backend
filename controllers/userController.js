@@ -12,7 +12,10 @@ export const googleAuth = asyncHandler(async (req, res) => {
     const user = await User.findOne({ email });
     if (user) {
       if (email_verified && !user.isEmailVerified) {
-        await User.updateOne({_id: user._id},{isEmailVerified:email_verified})
+        await User.updateOne(
+          { _id: user._id },
+          { isEmailVerified: email_verified }
+        );
       }
 
       if (!email_verified) {
@@ -30,14 +33,13 @@ export const googleAuth = asyncHandler(async (req, res) => {
     }
     console.log(user, "user-------");
     if (!user) {
-    
       const user = await User.create({
         name,
         email,
         isEmailVerified: email_verified,
         picture,
       });
-     
+
       if (user.isEmailVerified) {
         return res.status(201).json({
           _id: user._id,
@@ -51,10 +53,10 @@ export const googleAuth = asyncHandler(async (req, res) => {
         });
       }
 
-      if(!user.isEmailVerified){
+      if (!user.isEmailVerified) {
         return res.status(400).json({
-          message:"verify email"
-        })
+          message: "verify email",
+        });
       }
     }
     res.status(400);
@@ -63,5 +65,3 @@ export const googleAuth = asyncHandler(async (req, res) => {
     console.log(error);
   }
 });
-
-
