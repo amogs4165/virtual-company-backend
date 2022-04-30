@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json())
 app.use(cors({origin:"*"}));
 app.use(morgan('dev'));
-app.use(verifyJwt)
+// app.use(verifyJwt)
 
 import AUTH_ROUTES from './routes/userRoutes.js'
 import CATEGORY_ROUTES from './routes/categoryRoutes.js'

@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.route("/")
     .get(userInfo,googleAuth)
-    // .put()
+    .put()
   
    
 
