@@ -87,7 +87,7 @@ const companySchema = new mongoose.Schema({
   },
   employees: [employeeSchema],
   portfolio: [portfolioSchema],
-  hirindDetails: [hiringSchema],
+  hiringDetails: [hiringSchema],
   joinRequest: [requestSchema],
 });
 

@@ -20,4 +20,8 @@ router.route("/block/:id").patch(blockCompany);
 
 router.route("/unBlock/:id").patch(unBlockCompany);
 
+router.route("/request/:id").post();
+
+router.route("/request/:id").patch()
+
 export default router;

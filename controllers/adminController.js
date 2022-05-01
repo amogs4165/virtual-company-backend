@@ -20,7 +20,7 @@ export const authAdmin = asyncHandler(async (req, res) => {
     return res.status(401).send({ message: "Invalid credential" });
 
   if (validPassword) {
-    const tokenn = admin.generateAuthToken();
+    const token = admin.generateAuthToken();
     return res
       .status(200)
       .send({ data: token, message: "Logged in successfully" });

@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Company from "../models/companyModel.js";
+import Request from "../models/joinRequestModel.js";
 import User from "../models/userModel.js";
 
 // @desc    To register a company
@@ -7,14 +8,14 @@ import User from "../models/userModel.js";
 // @acce    Private - user
 export const createCompany = asyncHandler(async (req, res) => {
   const newCompany = await Company.create(req.body);
-  if (newCompany){
+  if (newCompany) {
     //   const Email = req.user.email
     //   const user = User.findOne({email:Email})
     //   user.isFounder = true;
     //   user.companyId = newCompany._id;
     //   await user.save();
-      return res.status(201).json({ newCompany: newCompany });
-    } 
+    return res.status(201).json({ newCompany: newCompany });
+  }
   res.status(500).json({ messgae: "Internal server error" });
 });
 
@@ -43,7 +44,6 @@ export const getPendingCompany = asyncHandler(async (req, res) => {
 // @acce    Private - admin
 export const approveCompany = asyncHandler(async (req, res) => {
   const COMPANY_ID = req.params.id;
-  console.log(req.params._id);
   const company = await Company.findOne({ _id: COMPANY_ID });
   if (company) {
     company.approved = true;
@@ -57,7 +57,6 @@ export const approveCompany = asyncHandler(async (req, res) => {
 // @acce    Private - admin
 export const blockCompany = asyncHandler(async (req, res) => {
   const COMPANY_ID = req.params.id;
-  console.log(req.params._id);
   const company = await Company.findOne({ _id: COMPANY_ID });
   if (company) {
     company.isBlocked = true;
@@ -70,14 +69,32 @@ export const blockCompany = asyncHandler(async (req, res) => {
 // @rout    PATCH /company/unBlock/:id
 // @acce    Private - admin
 export const unBlockCompany = asyncHandler(async (req, res) => {
-    const COMPANY_ID = req.params.id;
-    console.log(req.params._id);
-    const company = await Company.findOne({ _id: COMPANY_ID });
-    if (company) {
-      company.isBlocked = false;
-      await company.save();
-      return res.status(201).json({ message: "unblocked" });
-    }
-  });
+  const COMPANY_ID = req.params.id;
+  const company = await Company.findOne({ _id: COMPANY_ID });
+  if (company) {
+    company.isBlocked = false;
+    await company.save();
+    return res.status(201).json({ message: "unblocked" });
+  }
+});
 
+// @desc    To request to join a company
+// @rout    POST /company/request/:id
+// @acce    Private - user
+export const sendRequest = asyncHandler(async (req, res) => {
+  const COMPANY_ID = req.params.id;
+  const request = await Request.create(req.body)
+  if(request)
+    res.json(201).json({message: "request sended"})
+});
 
+// @desc    To cancel a request
+// @rout    DELETE /company/request
+// @acce    Private - user
+export const cancelRequest = asyncHandler(async(req,res)=>{
+  const COMPANY_ID = req.body.userId;
+  const USER_ID = req.body.companyId;
+  const request = await Request.findOne({userId:USER_ID,companyId:COMPANY_ID})
+  if(request)
+    res.json(201).json({message:"request canceled"}) 
+})
