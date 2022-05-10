@@ -5,6 +5,30 @@ const employeeSchema = mongoose.Schema({
   required: false,
 });
 
+const reviewSchema = mongoose.Schema(
+  {
+    user: {
+      type: String,
+      required: false,
+      ref: "User",
+    },
+    name: {
+      type: String,
+      required: false,
+    },
+    rating: {
+      type: Number,
+      required: false,
+    },
+    comment: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const portfolioSchema = mongoose.Schema({
   title: {
     type: String,
@@ -89,6 +113,7 @@ const companySchema = new mongoose.Schema({
   portfolio: [portfolioSchema],
   hiringDetails: [hiringSchema],
   joinRequest: [requestSchema],
+  review: [reviewSchema],
 });
 
 const Company = mongoose.model("company", companySchema);
