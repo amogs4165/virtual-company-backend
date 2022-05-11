@@ -27,17 +27,16 @@ createSocket(httpServer);
 import AUTH_ROUTES from "./routes/userRoutes.js";
 import CATEGORY_ROUTES from "./routes/categoryRoutes.js";
 import COMPANY_ROUTES from "./routes/companyRoutes.js";
-import PAYMENT_ROUTES from './routes/paymentRoutes.js';
+import ORDER_ROUTES from './routes/orderRoutes.js';
 import parser from "./utils/cloudinary.js";
 
 app.use("/user", AUTH_ROUTES);
 app.use("/category", CATEGORY_ROUTES);
 app.use("/company", COMPANY_ROUTES);
-app.use("/payment", PAYMENT_ROUTES);
+app.use("/order", ORDER_ROUTES);
 
 app.post("/upload",parser.single('file'),   async (req, res) => {
   try {
-   
 
     const {originalname} = req.file
     console.log(req.file)
