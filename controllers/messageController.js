@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
-import Message from "../models/messages";
+import Message from "../models/messagesModel.js";
+
 
 // @desc    New message
 // @rout    POST /message
@@ -14,6 +15,7 @@ export const newMessage = asyncHandler(async (req, res) => {
 // @rout    GET /message/:conversationId
 // @acce    Private - user
 export const messages = asyncHandler(async (req, res) => {
+
     const messages = await Message.find({
         conversationId: req.params.conversationId,
     })

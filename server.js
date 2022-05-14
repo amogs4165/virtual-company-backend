@@ -28,12 +28,16 @@ import AUTH_ROUTES from "./routes/userRoutes.js";
 import CATEGORY_ROUTES from "./routes/categoryRoutes.js";
 import COMPANY_ROUTES from "./routes/companyRoutes.js";
 import ORDER_ROUTES from './routes/orderRoutes.js';
+import CONVERSATION_ROUTES from './routes/conversationRoutes.js';
+import MESSAGES_ROUTES from './routes/messageRoutes.js'
 import parser from "./utils/cloudinary.js";
 
 app.use("/user", AUTH_ROUTES);
 app.use("/category", CATEGORY_ROUTES);
 app.use("/company", COMPANY_ROUTES);
 app.use("/order", ORDER_ROUTES);
+app.use("/conversation",CONVERSATION_ROUTES)
+app.use("/messages", MESSAGES_ROUTES);
 
 app.post("/upload",parser.single('file'),   async (req, res) => {
   try {

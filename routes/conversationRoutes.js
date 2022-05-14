@@ -1,5 +1,6 @@
 import express from "express";
-import { newConversation, userConversation } from "../socket/controllers/conversationController";
+import { newConversation, userConversation } from "../controllers/conversationController.js";
+
 
 const router = express.Router();
 
